@@ -1,0 +1,26 @@
+{
+  "ComponentConfigData": [
+    {
+      "$type": "TBFlash.Skywalk.TBFlash_Skywalk, TBFlash.Skywalk",
+      "name":  "TBFlash_Skywalk"
+    }
+  ],
+  "userVisible": true,
+  "displayOrder": 4,
+  "icon": "SkywalkIcon",
+  "requiresIndoors": false,
+  "excludeWWF": false,
+  "requiresOutdoors": false,
+  "OnlyStraightLines": false,
+  "enableVisualEndpoints": false,
+  "Level2u": false,
+  "Level1u": false,
+  "Level0": false,
+  "Level1": true,
+  "Level2": true,
+  "PreReqTTLs": [],
+  "ConstructionMaterials": [],
+  "_i18nNameKey": "TBFlash.Skywalk.name",
+  "_i18nDescKey": "TBFlash.Skywalk.description",
+  "name": "Skywalk"
+}

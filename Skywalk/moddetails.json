@@ -1,0 +1,9 @@
+{
+  "Author": [ "TBFlash" ],
+  "Description": "Skywalk",
+  "MinRequiredVersion": "2020-02-10T00:00:00",
+  "Dependencies": [ 2682398760 ],
+  "Build": 1.1,
+  "Version": "1.10",
+  "SteamId": 2825956078
+}

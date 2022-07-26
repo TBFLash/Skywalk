@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<TBFlash>
+	<Skywalk>
+		<name>Skywalk</name>
+		<description>Build on L2 and L3 over roads</description>
+		<floorAboveProximity>[nearby]Obstruction above object</floorAboveProximity>
+		<noRoad>Must be placed over road or track</noRoad>
+		<needsExisting>Connect to existing wall or concrete</needsExisting>
+		<sizeTooBig>Skywalk section too big; max 20 on each side</sizeTooBig>
+		<fourCorners>Below the four corners must be empty or walls</fourCorners>
+		<edgesNotValid>The edges must be empty</edgesNotValid>
+		<invalidObjectBelow>Can't build skywalk over object below</invalidObjectBelow>
+		<taxiwayProximityError>Too close to Taxiway or Runway</taxiwayProximityError>
+		<obstructions>Must be sufficiently clear of nearby obstructions</obstructions>
+	</Skywalk>
+</TBFlash>
