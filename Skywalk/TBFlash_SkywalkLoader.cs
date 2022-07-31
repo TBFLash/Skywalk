@@ -34,13 +34,14 @@ namespace TBFlash.Skywalk
                 try
                 {
                     if (!SpriteManager.TryGet("SkywalkIcon", out _Skywalk.icon))
+                    {
                         TBFlash_Skywalk.TBFlashLogger(Log.FromPool("Did not load icon").WithCodepoint());
-                    else
                         SpriteManager.TryGet("FoundationIcons", out _Skywalk.icon);
+                    }
                 }
                 catch (Exception ex)
                 {
-                    TBFlash_Skywalk.TBFlashLogger(Log.FromPool("Error loading FoundationIcons" + ex.ToString()));
+                    TBFlash_Skywalk.TBFlashLogger(Log.FromPool("Error loading Icons" + ex.ToString()));
                 }
                 _Skywalk.requiresIndoors = false;
                 _Skywalk.excludeWWF = false;

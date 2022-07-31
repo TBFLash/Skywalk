@@ -30,7 +30,7 @@ namespace TBFlash.Skywalk
 			{
 				for (int j = 0; j < (int)textRect.height && !flag; j++)
 				{
-					for (int k = 0; k < 2; k++)
+					for (int k = 1; k <= 2; k++)
 					{
 						if (Cell.At(new Vector3Int((int)textRect.x + i, (int)textRect.y + j, k)).indoors)
 							flag = true;
