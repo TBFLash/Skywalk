@@ -19,7 +19,7 @@ namespace TBFlash.Skywalk
         {
             new Harmony(InternalName).PatchAll();
             FileLog.Reset();
-            TBFlash_Skywalk.TBFlashLogger(Log.FromPool("OnLoad()").WithCodepoint());
+            TBFlash_Skywalk_Helpers.TBFlashLogger(Log.FromPool("OnLoad()").WithCodepoint());
             if (!loaded && Game.isLoaded)
             {
                 loaded = TBFlash_SkywalkLoader.Loader();
@@ -28,7 +28,7 @@ namespace TBFlash.Skywalk
         }
         public override void OnSettingsLoaded()
         {
-            TBFlash_Skywalk.TBFlashLogger(Log.FromPool("").WithCodepoint());
+            TBFlash_Skywalk_Helpers.TBFlashLogger(Log.FromPool("").WithCodepoint());
         }
         public override void OnAirportLoaded(Dictionary<string, object> saveData)
         {

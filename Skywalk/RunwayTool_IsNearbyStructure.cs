@@ -8,17 +8,17 @@ namespace TBFlash.Skywalk
     [HarmonyPatch("isNearbyStructure")]
     public static class RunwayTool_IsNearbyStructure
     {
-		private static bool Prefix(ref bool __result, Rect r, float distance = 9f)
+		private static bool Prefix(ref bool __result, Rect r, float distance = 10f)
 		{
 			bool flag = false;
-			for (float num = r.min.x - distance; num < r.max.x + distance; num++)
+			for (float x = r.min.x - distance; x < r.max.x + distance; x++)
 			{
-				for (float num2 = r.min.y - distance; num2 < r.max.y + distance; num2++)
+				for (float y = r.min.y - distance; y < r.max.y + distance; y++)
 				{
-					for (int num3 = 0; num3 < 3; num3++)
+					for (int z = 0; z < 3; z++)
 					{
-						Cell cell = Cell.At(new Vector3Int((int)num, (int)num2, num3), false);
-						if (cell != null && (cell.isWW || (cell.constructionMaterial != null && cell.constructionMaterial.threadsafeName == "Concrete" && !(cell.roadNode?.isTaxi ?? true))))
+						Cell cell = Cell.At(new Vector3Int((int)x, (int)y, z), false);
+						if (cell != null && (cell.isWW || (cell.constructionMaterial?.threadsafeName == "Concrete" && !(cell.roadNode?.isTaxi ?? true))))
 						{
 							flag = true;
 						}

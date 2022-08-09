@@ -8,6 +8,7 @@ namespace TBFlash.Skywalk
 	[HarmonyPatch("SetupSprites")]
 	public static class LightRailTrain_SetupSprites
 	{
+		private static readonly AccessTools.FieldRef<LightRailTrain, List<SpriteRenderer>> all_srsRef = AccessTools.FieldRefAccess<List<SpriteRenderer>>(typeof(LightRailTrain), "all_srs");
 		private static bool Prefix(LightRailTrain __instance, out LightRailTrain __state, bool force = false)
         {
 			__state = __instance;
@@ -15,10 +16,11 @@ namespace TBFlash.Skywalk
         }
 		private static void Postfix(LightRailTrain __state)
         {
-			Type theType = __state.GetType();
-			var fieldInfo = theType.GetField("all_srs", BindingFlags.Instance | BindingFlags.NonPublic);
-			List<SpriteRenderer> all_srs = (List<SpriteRenderer>)fieldInfo.GetValue(__state);
-			foreach (SpriteRenderer sr in all_srs)
+			//Type theType = __state.GetType();
+			//var fieldInfo = theType.GetField("all_srs", BindingFlags.Instance | BindingFlags.NonPublic);
+			//List<SpriteRenderer> all_srs = (List<SpriteRenderer>)fieldInfo.GetValue(__state);
+			//foreach (SpriteRenderer sr in all_srs)
+			foreach(SpriteRenderer sr in all_srsRef(__state))
 			{
 				Vector3 position = sr.transform.position;
 				position.z = 1;

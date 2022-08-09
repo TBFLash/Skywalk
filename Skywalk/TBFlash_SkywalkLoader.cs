@@ -22,12 +22,12 @@ namespace TBFlash.Skywalk
         public static bool Loader()
         {
             bool loaded = false;
-            TBFlash_Skywalk.TBFlashLogger(Log.FromPool("!loaded && Game.isLoaded").WithCodepoint());
+            TBFlash_Skywalk_Helpers.TBFlashLogger(Log.FromPool("!loaded && Game.isLoaded").WithCodepoint());
             TBFlash_Skywalk _Skywalk = UnityEngine.ScriptableObject.CreateInstance<TBFlash_Skywalk>();
             if (_Skywalk != null)
             {
-                TBFlash_Skywalk.TBFlashLogger(Log.FromPool("_Skywalk != null").WithCodepoint());
-                TBFlash_Skywalk.TBFlashLogger(Log.FromPool("All_sprites has " + SpriteManager.all_sprites.Count + " Items.").WithCodepoint());
+                TBFlash_Skywalk_Helpers.TBFlashLogger(Log.FromPool("_Skywalk != null").WithCodepoint());
+                TBFlash_Skywalk_Helpers.TBFlashLogger(Log.FromPool("All_sprites has " + SpriteManager.all_sprites.Count + " Items.").WithCodepoint());
                 _Skywalk.userVisible = true;
                 _Skywalk.displayOrder = 4;
 
@@ -35,13 +35,13 @@ namespace TBFlash.Skywalk
                 {
                     if (!SpriteManager.TryGet("SkywalkIcon", out _Skywalk.icon))
                     {
-                        TBFlash_Skywalk.TBFlashLogger(Log.FromPool("Did not load icon").WithCodepoint());
+                        TBFlash_Skywalk_Helpers.TBFlashLogger(Log.FromPool("Did not load icon").WithCodepoint());
                         SpriteManager.TryGet("FoundationIcons", out _Skywalk.icon);
                     }
                 }
                 catch (Exception ex)
                 {
-                    TBFlash_Skywalk.TBFlashLogger(Log.FromPool("Error loading Icons" + ex.ToString()));
+                    TBFlash_Skywalk_Helpers.TBFlashLogger(Log.FromPool("Error loading Icons" + ex.ToString()));
                 }
                 _Skywalk.requiresIndoors = false;
                 _Skywalk.excludeWWF = false;
@@ -62,24 +62,24 @@ namespace TBFlash.Skywalk
 
                 if (TerrainToolHandler.Instance.ModdedTerrainTools.Any((TerrainTool t) => t.name == _Skywalk.name))
                 {
-                    TBFlash_Skywalk.TBFlashLogger(Log.FromPool("Could not load Skywalk, already loaded a tool with the name \"" + _Skywalk.name + "\"!"));
+                    TBFlash_Skywalk_Helpers.TBFlashLogger(Log.FromPool("Could not load Skywalk, already loaded a tool with the name \"" + _Skywalk.name + "\"!"));
                 }
                 else
                 {
-                    TBFlash_Skywalk.TBFlashLogger(Log.FromPool("Loading _Skywalk into ModdedTerrainTools").WithCodepoint());
+                    TBFlash_Skywalk_Helpers.TBFlashLogger(Log.FromPool("Loading _Skywalk into ModdedTerrainTools").WithCodepoint());
                     TerrainToolHandler.Instance.ModdedTerrainTools.Add(_Skywalk);
-                    if (TBFlash_Skywalk.isTBFlashDebug && TerrainToolHandler.Instance.ModdedTerrainTools.Any((TerrainTool t) => t.name == _Skywalk.name))
-                        TBFlash_Skywalk.TBFlashLogger(Log.FromPool("Loaded TerrainTool \"" + _Skywalk.name + "\" into ModdedTerrainTools").WithCodepoint());
+                    if (TBFlash_Skywalk_Helpers.isTBFlashDebug && TerrainToolHandler.Instance.ModdedTerrainTools.Any((TerrainTool t) => t.name == _Skywalk.name))
+                        TBFlash_Skywalk_Helpers.TBFlashLogger(Log.FromPool("Loaded TerrainTool \"" + _Skywalk.name + "\" into ModdedTerrainTools").WithCodepoint());
                 }
                 try
                 {
                     typeof(TerrainTool).GetMethod("LoadTool", BindingFlags.NonPublic | BindingFlags.Static).Invoke(null, new object[] { _Skywalk });
-                    TBFlash_Skywalk.TBFlashLogger(Log.FromPool("Added " + _Skywalk.name + " to TerrainTool.Tools").WithCodepoint());
+                    TBFlash_Skywalk_Helpers.TBFlashLogger(Log.FromPool("Added " + _Skywalk.name + " to TerrainTool.Tools").WithCodepoint());
                     loaded = true;
                 }
                 catch (Exception ex)
                 {
-                    TBFlash_Skywalk.TBFlashLogger(Log.FromPool("did not add " + _Skywalk.name + " to TerrainTool.Tools. Exception = " + ex.ToString()).WithCodepoint());
+                    TBFlash_Skywalk_Helpers.TBFlashLogger(Log.FromPool("did not add " + _Skywalk.name + " to TerrainTool.Tools. Exception = " + ex.ToString()).WithCodepoint());
                 }
             }
             return loaded;

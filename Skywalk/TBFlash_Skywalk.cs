@@ -6,7 +6,6 @@ namespace TBFlash.Skywalk
 {
 	public class TBFlash_Skywalk : TerrainTool
 	{
-		internal static readonly bool isTBFlashDebug = false;
 		private static OffsetArray2D<int>? tmp_mask;
 		private static ConstructionMaterial? _concrete;
 		private static ConstructionMaterial? _wall;
@@ -57,7 +56,7 @@ namespace TBFlash.Skywalk
 		}
 		public static void Reset()
 		{
-			TBFlashLogger(Log.FromPool("").WithCodepoint());
+			TBFlash_Skywalk_Helpers.TBFlashLogger(Log.FromPool("").WithCodepoint());
 			tmp_mask = new OffsetArray2D<int>(Game.current.Map().MapBounds);
 		}
 		protected override ConstructionMaterial MatForDragPos(Vector3Int pos)
@@ -346,7 +345,7 @@ namespace TBFlash.Skywalk
             int[] adjustments = new int[9] { 0, 0, 0, 0, 0, 0, 0, 0, 0 };
 			List<KeyValuePair<Edges, Cell>> edges = CornerBitTest(cornertype, cornerCells, ref adjustments);
 
-			TBFlashLogger(Log.FromPool(String.Format("CornerType: {0}; Edges.count: {1}", cornertype, edges.Count)).WithCodepoint());
+			TBFlash_Skywalk_Helpers.TBFlashLogger(Log.FromPool(String.Format("CornerType: {0}; Edges.count: {1}", cornertype, edges.Count)).WithCodepoint());
 			foreach (KeyValuePair<Edges, Cell> edge in edges)
 			{
 				int cellsToTest = 10 - adjustments[(int)edge.Key];
@@ -360,7 +359,7 @@ namespace TBFlash.Skywalk
 			{
 				int width = cornerCells[1].x - cornerCells[0].x + 1;
 				int height = cornerCells[2].y - cornerCells[0].y + 1;
-				TBFlashLogger(Log.FromPool(String.Format("Width: {0}; Height {0}", width, height)).WithCodepoint());
+				TBFlash_Skywalk_Helpers.TBFlashLogger(Log.FromPool(String.Format("Width: {0}; Height {0}", width, height)).WithCodepoint());
 				for (int i = 0; i <= 8; i++)
 					adjustments[i] = 0;
 				if (width <= 10 || height <= 10)
@@ -392,7 +391,7 @@ namespace TBFlash.Skywalk
 							edges.AddRange(CornerBitTest(Cornercells.BottomLeft, cornerCells, ref adjustments));
 							break;
 					}
-					TBFlashLogger(Log.FromPool(String.Format("Adjustments: North: {0}; South: {1}; East: {2}; West: {3}", adjustments[4], adjustments[1], adjustments[8], adjustments[4])).WithCodepoint());
+					TBFlash_Skywalk_Helpers.TBFlashLogger(Log.FromPool(String.Format("Adjustments: North: {0}; South: {1}; East: {2}; West: {3}", adjustments[4], adjustments[1], adjustments[8], adjustments[4])).WithCodepoint());
 
 					foreach (KeyValuePair<Edges, Cell> edge in edges)
 					{
@@ -455,7 +454,7 @@ namespace TBFlash.Skywalk
 		private List<Cell> ContiguousCells(KeyValuePair<Edges, Cell> kvp, int cellsToTest = 10)
         {
 			Edges edge = kvp.Key;
-			TBFlashLogger(Log.FromPool(String.Format("Edge: {0}; cell: {1}", edge, kvp.Value.Position.ToString())).WithCodepoint());
+			TBFlash_Skywalk_Helpers.TBFlashLogger(Log.FromPool(String.Format("Edge: {0}; cell: {1}", edge, kvp.Value.Position.ToString())).WithCodepoint());
 
 			List<Cell> cells = new();
 			Vector3Int direction1 = Vector3Int.zero;
@@ -523,13 +522,6 @@ namespace TBFlash.Skywalk
 		private bool Internal_checkPos_indoors(Vector3Int n)
 		{
 			return n.IsValidMapPosition() && (IsBitmask(n, CellStatus.ValidInDrag) || IsBitmask(n, CellStatus.alreadyIndoors) || IsBitmask(n, CellStatus.futureIndoors));
-		}
-		internal static void TBFlashLogger(Log log)
-		{
-			if (isTBFlashDebug)
-			{
-				Game.Logger.Write(log);
-			}
 		}
 	}
 }

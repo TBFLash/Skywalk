@@ -8,6 +8,8 @@ namespace TBFlash.Skywalk
 	[HarmonyPatch("Changed")]
 	public static class TrashBag_Changed
 	{
+		private static readonly AccessTools.FieldRef<TrashBag, POSprite> spriteRef = AccessTools.FieldRefAccess<POSprite>(typeof(TrashBag), "sprite");
+
 		private static bool Prefix(TrashBag __instance, out TrashBag __state, IPrefab us)
 		{
 			__state = __instance;
@@ -16,14 +18,15 @@ namespace TBFlash.Skywalk
 
 		private static void Postfix(TrashBag __state, IPrefab us)
         {
-			Type theType = __state.GetType();
-			var fieldInfo = theType.GetField("sprite", BindingFlags.Instance | BindingFlags.NonPublic);
-			POSprite sprite = (POSprite)fieldInfo.GetValue(__state);
-			if(sprite.layerMask == 1179648)
+			//Type theType = __state.GetType();
+			//var fieldInfo = theType.GetField("sprite", BindingFlags.Instance | BindingFlags.NonPublic);
+			//POSprite sprite = (POSprite)fieldInfo.GetValue(__state);
+			POSprite sprite = spriteRef(__state);
+			if (sprite.layerMask == 1179648)
             {
 				sprite.sortOrder = -DepthSort.Z(sprite.worldPos.y, -1);
 			}
-			TBFlash_Skywalk.TBFlashLogger(Log.FromPool(String.Format("TrashBag layerMask: {0}", sprite.layerMask)));
+			//TBFlash_Skywalk.TBFlashLogger(Log.FromPool(String.Format("TrashBag layerMask: {0}", sprite.layerMask)));
 		}
 	}
 }
