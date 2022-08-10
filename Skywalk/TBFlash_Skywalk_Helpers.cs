@@ -5,7 +5,7 @@ namespace TBFlash.Skywalk
 {
     public static class TBFlash_Skywalk_Helpers
     {
-        internal static readonly bool isTBFlashDebug = true;
+        internal static readonly bool isTBFlashDebug = false;
 
         //returns true if the PO the agent is on is not one of those listed or if there is no PO (and if there is a roadnode it is not a taxiway)
         public static bool AgentPOTest(Vector2 inboundCell)

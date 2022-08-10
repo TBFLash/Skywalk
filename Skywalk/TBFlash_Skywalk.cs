@@ -120,7 +120,6 @@ namespace TBFlash.Skywalk
         }
         protected override bool ValidatePosition(Vector3Int position)
 		{
-			//TBFlashLogger(Log.FromPool("").WithCodepoint());
 			if (UILevelSelector.CURRENT_FLOOR > 0)
 			{
 				int floor = UILevelSelector.CURRENT_FLOOR;
@@ -163,7 +162,6 @@ namespace TBFlash.Skywalk
 		}
 		protected override bool ValidateCustom(PlacementValidator validator, out bool weWantToContinue)
 		{
-			//TBFlashLogger(Log.FromPool("").WithCodepoint());
 			weWantToContinue = true;
 			nTaxiwayProximity = 0;
 			nBadFloor = 0;

@@ -1,6 +1,5 @@
 ﻿using UnityEngine;
 using HarmonyLib;
-using System.Reflection;
 
 namespace TBFlash.Skywalk
 {
@@ -17,9 +16,6 @@ namespace TBFlash.Skywalk
 		}
 		private static void Postfix(MeshSector __state, int x, int y, int submesh)
 		{
-			//Type theType = __state.GetType();
-			//var fieldInfo = theType.GetField("verts", BindingFlags.Static | BindingFlags.NonPublic);
-			//List<Vector3> verts = (List<Vector3>)fieldInfo.GetValue(__state);
 			List<Vector3> verts = vertsRef(__state);
 
 			float zValue = 0f;

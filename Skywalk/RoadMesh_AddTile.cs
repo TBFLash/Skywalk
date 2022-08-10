@@ -1,10 +1,8 @@
 ﻿using UnityEngine;
 using HarmonyLib;
-using System.Reflection;
 
 namespace TBFlash.Skywalk
 {
-
 	[HarmonyPatch(typeof(RoadMesh))]
 	[HarmonyPatch("AddTile")]
 	public static class RoadMesh_AddTile
@@ -22,16 +20,10 @@ namespace TBFlash.Skywalk
         {
 			if (UILevelSelector.CURRENT_FLOOR < 0)
 				return;
-			PlaceableObject placeableObj = Cell.At(Vector3Int.FloorToInt(btm_left), false).placeableObj;
-			//Type theType = __state.GetType();
-			//var fieldInfo = theType.GetField("floor", BindingFlags.Instance | BindingFlags.NonPublic);
-			//int floor = (int)fieldInfo.GetValue(__state);
+			PlaceableObject placeableObj = Cell.At(Vector3Int.RoundToInt(btm_left), false).placeableObj;
 			if (placeableObj?.aircraftGate != null || isTaxi || floorRef(__state) < 0)
 				return;
 			float num = 1.61f + btm_left.z;
-
-			//fieldInfo = theType.GetField("vertices", BindingFlags.Static | BindingFlags.NonPublic);
-			//List<Vector3> vertices = (List<Vector3>)fieldInfo.GetValue(__state);
 			List<Vector3> vertices = verticesRef(__state);
 
 			vertices.RemoveRange(vertices.Count - 4, 4);

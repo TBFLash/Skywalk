@@ -19,11 +19,7 @@ namespace TBFlash.Skywalk
         {
             if (!__result)
                 return;
-            //Type theType = __state.GetType();
-            //var propInfo = theType.GetProperty("isTaxi", BindingFlags.Instance | BindingFlags.NonPublic);
-            //bool isTaxi = (bool)propInfo.GetValue(__state);
             Func<bool> isTaxiGetter = (Func<bool>)Delegate.CreateDelegate(typeof(Func<bool>), __state, isTaxiGetterMethodInfo);
-            //bool isTaxi = isTaxiGetter();
             if (isTaxiGetter())
             {
                 Rect rect2 = Rect.MinMaxRect(Mathf.Max((float)Game.current.Map().minX, rect.xMin - 10f), Mathf.Max((float)Game.current.Map().minY, rect.yMin - 10f), Mathf.Min((float)Game.current.Map().maxX, rect.xMax + 10f), Mathf.Min((float)Game.current.Map().maxY, rect.yMax + 10f));

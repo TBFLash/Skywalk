@@ -1,6 +1,5 @@
 ﻿using UnityEngine;
 using HarmonyLib;
-using SimAirport.Logging;
 
 namespace TBFlash.Skywalk
 {
@@ -42,7 +41,6 @@ namespace TBFlash.Skywalk
 			else if(__instance.textObject.gameObject.layer != 17)
 				go.SetGOLayerRecursively(17, 1);
 			go.SetActive(floor >= 0);
-			//TBFlash_Skywalk.TBFlashLogger(Log.FromPool(String.Format("Zone: {0}; floor: {1}; go.layer: {2}; TO.RT.rect: {3}, TO.TextBounds: {4}; TO.GO.transform.position: {5}; TO.GO.transform.rotation: {6}; Zone.BoundingRect: {7}; textRect: {8}", __instance.DisplayName(), floor, __instance.textObject.gameObject.layer, __instance.textObject.rectTransform.rect.ToString(), __instance.textObject.textBounds.ToString(), __instance.textObject.gameObject.transform.position.ToString(), __instance.textObject.gameObject.transform.rotation.ToString(), __instance.BoundingRect().ToString(), textRect.ToString())));
 			return false;
 		}
 	}

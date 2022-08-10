@@ -1,6 +1,5 @@
 ﻿using UnityEngine;
 using HarmonyLib;
-using System.Reflection;
 
 namespace TBFlash.Skywalk
 {
@@ -16,10 +15,6 @@ namespace TBFlash.Skywalk
         }
 		private static void Postfix(LightRailTrain __state)
         {
-			//Type theType = __state.GetType();
-			//var fieldInfo = theType.GetField("all_srs", BindingFlags.Instance | BindingFlags.NonPublic);
-			//List<SpriteRenderer> all_srs = (List<SpriteRenderer>)fieldInfo.GetValue(__state);
-			//foreach (SpriteRenderer sr in all_srs)
 			foreach(SpriteRenderer sr in all_srsRef(__state))
 			{
 				Vector3 position = sr.transform.position;
