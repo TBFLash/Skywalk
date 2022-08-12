@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using HarmonyLib;
+using System.Collections.Generic;
 
 namespace TBFlash.Skywalk
 {
@@ -53,27 +54,27 @@ namespace TBFlash.Skywalk
 					posprite.worldRotation = worldRotation;
 					posprite.localRotation = spriteConfig.localRotation;
 					if (spriteConfig.sortingOrder == -1000f)
-                    {
-                        posprite.sortOrder = sortOrderVar;
-                        if (po.MyZeroAllocName.Contains("Remote Bus Pickup") || po.MyZeroAllocName.Contains("ParkingLot") || po.MyZeroAllocName.Contains("Label"))
-                            posprite.sortOrder = DepthSort.Order(rtFloorPoint - sortOrderVar, -1);
-                        sortOrderVar += 0.01f;
-                    }
-                    /*else if (po.MyZeroAllocName == "Baggage Depot")
-                    {
+					{
+						posprite.sortOrder = sortOrderVar;
+						if (po.MyZeroAllocName.Contains("Remote Bus Pickup") || po.MyZeroAllocName.Contains("ParkingLot") || po.MyZeroAllocName.Contains("Label"))
+							posprite.sortOrder = DepthSort.Order(rtFloorPoint - sortOrderVar, -1);
+						sortOrderVar += 0.01f;
+					}
+					/*else if (po.MyZeroAllocName == "Baggage Depot")
+					{
 						if (posprite.sd.sprite.name.Contains("LugaggeSysConnector"))
 							posprite.sortOrder = DepthSort.Order(rtFloorPoint - spriteConfig.sortingOrder, -1);
 						else
 							posprite.sortOrder = DepthSort.Order(rtFloorPoint - spriteConfig.sortingOrder, 0);
 						TBFlash_Skywalk_Helpers.TBFlashLogger(Log.FromPool(string.Format("Baggage Depot 1: Sprite: {0}; posprite.sortOrder: {1}", posprite.sd.sprite.name, posprite.sortOrder)));
 					}*/
-                    else if (po.gameObject.layer == 17 && po.gameObject.activeInHierarchy && (!Cell.At(po.footprintV3I_0)?.indoors ?? true) && po.footprintV3I_0.z >= 0 && spriteConfig.relativeLevel == 0 && (!(po.MyZeroAllocName.Contains("Aircraft Gate") || po.MyZeroAllocName == "ATC Tower" || po.MyZeroAllocName.Contains("Hangar") || po.MyZeroAllocName.Contains("Fuel Depot") || po.MyZeroAllocName.Contains("Fuel Tank") || po.MyZeroAllocName.Contains("Fueling Station") || po.MyZeroAllocName.Contains("Road Ramp") || po.MyZeroAllocName.Contains("Fuel Port") || po.MyZeroAllocName.Contains("Small Gate Stairs"))))
-                        posprite.sortOrder = DepthSort.Order(rtFloorPoint - spriteConfig.sortingOrder, -1);
-                    else if (po.MyZeroAllocName.Contains("Road Ramp") && ((posprite.sd.sprite.name == "Tunnel_Entrance" && po.roadRamp.EntranceV3I.z == 0) || (posprite.sd.sprite.name == "Tunnel_Exit" && po.roadRamp.ExitV3I.z == 0)))
-                        posprite.sortOrder = DepthSort.Order(rtFloorPoint - spriteConfig.sortingOrder, -1);
-                    else
-                        posprite.sortOrder = DepthSort.Order(rtFloorPoint - spriteConfig.sortingOrder, 0);
-                    posprite.color = white;
+					else if (po.gameObject.layer == 17 && po.gameObject.activeInHierarchy && (!Cell.At(po.footprintV3I_0)?.indoors ?? true) && po.footprintV3I_0.z >= 0 && spriteConfig.relativeLevel == 0 && (!(po.MyZeroAllocName.Contains("Aircraft Gate") || po.MyZeroAllocName == "ATC Tower" || po.MyZeroAllocName.Contains("Hangar") || po.MyZeroAllocName.Contains("Fuel Depot") || po.MyZeroAllocName.Contains("Fuel Tank") || po.MyZeroAllocName.Contains("Fueling Station") || po.MyZeroAllocName.Contains("Road Ramp") || po.MyZeroAllocName.Contains("Fuel Port") || po.MyZeroAllocName.Contains("Small Gate Stairs"))))
+						posprite.sortOrder = DepthSort.Order(rtFloorPoint - spriteConfig.sortingOrder, -1);
+					else if (po.MyZeroAllocName.Contains("Road Ramp") && ((posprite.sd.sprite.name == "Tunnel_Entrance" && po.roadRamp.EntranceV3I.z == 0) || (posprite.sd.sprite.name == "Tunnel_Exit" && po.roadRamp.ExitV3I.z == 0)))
+						posprite.sortOrder = DepthSort.Order(rtFloorPoint - spriteConfig.sortingOrder, -1);
+					else
+						posprite.sortOrder = DepthSort.Order(rtFloorPoint - spriteConfig.sortingOrder, 0);
+					posprite.color = white;
 					posprite.flipX = (po.rt_Scale() == -1f);
 					if (posprite.index == -1)
 						PORenderer.instance.Add(posprite);

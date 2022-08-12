@@ -9,13 +9,15 @@ namespace TBFlash.Skywalk
 	public static class AgentDataBufferRenderer_SetAgentSprites
 	{
 		private static readonly AccessTools.FieldRef<AgentDataBufferRenderer, Vector4[]> agentPositionDataRef = AccessTools.FieldRefAccess<Vector4[]>(typeof(AgentDataBufferRenderer), "agentPositionData");
+
 		private static bool Prefix(AgentDataBufferRenderer __instance, out AgentDataBufferRenderer __state, int i, ref AgentData agentData, int cameraMask)
-        {
+		{
 			__state = __instance;
 			return true;
-        }
+		}
+
 		private static void Postfix(AgentDataBufferRenderer __state, int i, ref AgentData agentData, int cameraMask)
-        {
+		{
 			if (UILevelSelector.CURRENT_FLOOR <= 0 || agentData.layerMask != 1114112)
 				return;
 			if(TBFlash_Skywalk_Helpers.AgentPOTest(agentData.position))

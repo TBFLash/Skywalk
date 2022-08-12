@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using HarmonyLib;
+using System;
 
 namespace TBFlash.Skywalk
 {
@@ -19,11 +20,11 @@ namespace TBFlash.Skywalk
 			float extents_x = Math.Abs(extents.x);
 			float extents_y = Math.Abs(extents.y);
 			if (go.transform.rotation.w != 1.0f)
-            {
+			{
 				extents_x = Math.Abs(extents.y);
 				extents_y = Math.Abs(extents.x);
-            }
-			Rect textRect = new(boundingRect.x + (boundingRect.width/2) - (extents_x / 2), boundingRect.y + (boundingRect.height/2) - (extents_y / 2), extents_x, extents_y);
+			}
+			Rect textRect = new Rect(boundingRect.x + (boundingRect.width/2) - (extents_x / 2), boundingRect.y + (boundingRect.height/2) - (extents_y / 2), extents_x, extents_y);
 			bool flag = false;
 			for (int i = 0; i < (int)textRect.width && !flag; i++)
 			{

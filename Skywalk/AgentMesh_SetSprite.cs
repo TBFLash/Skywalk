@@ -10,13 +10,15 @@ namespace TBFlash.Skywalk
 	public static class AgentMesh_SetSprite
 	{
 		private static readonly AccessTools.FieldRef<AgentMesh, Vector3[]> mesh_vertsRef = AccessTools.FieldRefAccess<Vector3[]>(typeof(AgentMesh), "mesh_verts");
+
 		private static bool Prefix(AgentMesh __instance, out AgentMesh __state, Vector2 agent_position, bool agent_isEnabled, bool agent_isOutdoors, int sprite_index, int SpriteID, bool flipX, int colorID)
-        {
+		{
 			__state = __instance;
 			return true;
-        }
+		}
+
 		private static void Postfix(AgentMesh __state, Vector2 agent_position, bool agent_isEnabled, bool agent_isOutdoors, int sprite_index, int SpriteID, bool flipX, int colorID)
-        {
+		{
 			if (UILevelSelector.CURRENT_FLOOR <= 0 || !agent_isEnabled || !agent_isOutdoors)
 				return;
 			if (TBFlash_Skywalk_Helpers.AgentPOTest(agent_position))

@@ -1,6 +1,8 @@
 ﻿using UnityEngine;
 using HarmonyLib;
 using System.Reflection;
+using System.Collections.Generic;
+using System;
 
 // Agent Renderer V2Culled
 // Implemented differently from other renderer's because it is an Internal protected class, while others are public, so, have to access everything via reflection rather than through the __instance object. Also have to call through the base.base IRenderer<AgentData> interface (which is public)
@@ -14,19 +16,22 @@ namespace TBFlash.Skywalk
 		private static readonly AccessTools.FieldRef<IRenderer<AgentData>, List<Vector4>> agentPositionDataRef = AccessTools.FieldRefAccess<List<Vector4>>(AccessTools.TypeByName("AgentRenderer_CulledDataBuffer"), "agentPositionData");
 		private static readonly MethodInfo datasGetterMethodInfo = AccessTools.PropertyGetter(AccessTools.TypeByName("AgentRenderer_CulledDataBuffer"), "datas");
 		private static readonly MethodInfo positionOffsetGetterMethodInfo = AccessTools.PropertyGetter(AccessTools.TypeByName("AgentRenderer_CulledDataBuffer"), "PositionOffset");
+
 		private static MethodBase TargetMethod()
 		{
 			return AccessTools.Method(AccessTools.TypeByName("AgentRenderer_CulledDataBuffer"), "SetData");
 		}
+
 		private static bool Prepare() => TargetMethod() != null;
 
 		private static bool Prefix(IRenderer<AgentData> __instance, out IRenderer<AgentData> __state, int AgentDataIndex)
-        {
+		{
 			__state = __instance;
 			return true;
-        }
+		}
+
 		private static void Postfix(IRenderer<AgentData> __state, int AgentDataIndex)
-        {
+		{
 			if (UILevelSelector.CURRENT_FLOOR <= 0)
 				return;
 			Func<AgentData[]> datasGetter = (Func<AgentData[]>)Delegate.CreateDelegate(typeof(Func<AgentData[]>), __state, datasGetterMethodInfo);

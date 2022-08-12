@@ -4,10 +4,10 @@ using TerrainTools;
 
 namespace TBFlash.Skywalk
 {
-    [HarmonyPatch(typeof(RunwayTool))]
-    [HarmonyPatch("isNearbyStructure")]
-    public static class RunwayTool_IsNearbyStructure
-    {
+	[HarmonyPatch(typeof(RunwayTool))]
+	[HarmonyPatch("isNearbyStructure")]
+	public static class RunwayTool_IsNearbyStructure
+	{
 		private static bool Prefix(ref bool __result, Rect r, float distance = 10f)
 		{
 			bool flag = false;

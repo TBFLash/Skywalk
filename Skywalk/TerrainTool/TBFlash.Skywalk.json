@@ -1,9 +1,9 @@
 {
   "ComponentConfigData": [
-    {
-      "$type": "TBFlash.Skywalk.TBFlash_Skywalk, TBFlash.Skywalk",
-      "name":  "TBFlash_Skywalk"
-    }
+	{
+	  "$type": "TBFlash.Skywalk.TBFlash_Skywalk, TBFlash.Skywalk",
+	  "name":  "TBFlash_Skywalk"
+	}
   ],
   "userVisible": true,
   "displayOrder": 4,
